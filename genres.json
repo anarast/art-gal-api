@@ -1,21 +1,20 @@
 {
   "genres": [
     "mystery",
-    "basketball",
+    "basketball+businessman",
     "businessman",
     "businesswoman",
     "business",
     "football",
-    "salad",
+    "woman+salad",
     "centaur",
     "math",
     "physics",
-    "surprised",
-    "angry",
-    "sad",
-    "chess",
+    "having+fun+at+work",
+    "having+fun",
+    "businessman+sports",
+    "hackers",
     "information+technology",
-    "mermaid",
-    "burglar"
+    "cyber+security"
   ]
 }
