@@ -15,12 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-def read_root():
-  return {"Hello": "World"}
-
-
-@app.get("/photo")
-def read_photo():
+@app.get("/photos")
+def get_photos():
   urls = url_scraper.scrape()
   return {"urls": urls}
