@@ -38,14 +38,7 @@ def scrape():
       
   except Exception as e:
     print("Error occurred making request." + str(e))
-    image_urls = [
-      'https://image.shutterstock.com/image-photo/attractive-aged-businesswoman-teacher-mentor-260nw-1043108527.jpg', 
-      'https://image.shutterstock.com/image-photo/shot-attractive-mature-businesswoman-working-260nw-1894819138.jpg', 
-      'https://image.shutterstock.com/image-photo/image-happy-young-business-woman-260nw-1215373642.jpg', 
-      'https://image.shutterstock.com/image-photo/shot-happy-middle-aged-woman-260nw-1923362096.jpg', 
-      'https://image.shutterstock.com/image-photo/portrait-young-smiling-woman-looking-260nw-1865153395.jpg', 
-      'https://image.shutterstock.com/image-photo/confident-stylish-european-mature-middle-260nw-1818513056.jpg'
-    ]
+
   finally:
     return image_urls
     
