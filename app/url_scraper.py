@@ -13,9 +13,15 @@ def scrape():
   genre_index = random.randint(0, len(genres))
   print(genre_index)
   print(genres[genre_index])
-  url = f"https://www.shutterstock.com/search/{genres[genre_index]}?image_type=photo&page=2"
+  url = f"https://www.shutterstock.com/search/{genres[genre_index]}?image_type=photo"
   print(url)
-  r = requests.get(url, headers={"User-Agent": "Chrome/51.0.2704.64"})
+  try:
+    r = requests.get(url, headers={"User-Agent": "Chrome/51.0.2704.64"})
+  except Exception as e:
+    print("Error occurred making request.")
+    print(e)
+    return []
+  
   soup = bs(r.content, 'html.parser')
   img_elements = soup.find('div', {'data-automation': 'mosaic-grid'}).find_all('img')
   image_urls = []
@@ -24,6 +30,8 @@ def scrape():
 
   for index, image in zip(range(start_index, start_index + NUM_IMAGES), img_elements):
     image_urls.append(img_elements[index]['src'])
+  
+  print(image_urls)
   
   return image_urls
 
