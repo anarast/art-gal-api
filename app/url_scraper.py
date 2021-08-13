@@ -5,34 +5,50 @@ import json
 from bs4 import BeautifulSoup as bs
 
 NUM_IMAGES = 6
-
-with open('./genres.json') as genres:
-  genres = json.load(genres)["genres"]
   
 def scrape():
-  genre_index = random.randint(0, len(genres))
+  with open('./genres.json') as genres:
+    genres = json.load(genres)["genres"]
+    
+  genre_index = random.randint(0, len(genres) - 1)
   print(genre_index)
   print(genres[genre_index])
+  
+  headers = {
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
+  }
   url = f"https://www.shutterstock.com/search/{genres[genre_index]}?image_type=photo"
   print(url)
-  try:
-    r = requests.get(url, headers={"User-Agent": "Chrome/51.0.2704.64"})
-  except Exception as e:
-    print("Error occurred making request.")
-    print(e)
-    return []
-  
-  soup = bs(r.content, 'html.parser')
-  img_elements = soup.find('div', {'data-automation': 'mosaic-grid'}).find_all('img')
   image_urls = []
-
-  start_index = random.randint(0, 10)
-
-  for index, image in zip(range(start_index, start_index + NUM_IMAGES), img_elements):
-    image_urls.append(img_elements[index]['src'])
   
-  print(image_urls)
-  
-  return image_urls
+  try:
+    r = requests.get(url, headers=headers, timeout=10)
+    
+    if r.status_code == 200:
+      soup = bs(r.content, 'html.parser')
+      img_elements = soup.find('div', {'data-automation': 'mosaic-grid'}).find_all('img')
+
+
+      start_index = random.randint(0, 10)
+
+      for index, image in zip(range(start_index, start_index + NUM_IMAGES), img_elements):
+        image_urls.append(img_elements[index]['src'])
+    
+      print(image_urls)
+      
+  except Exception as e:
+    print("Error occurred making request." + str(e))
+    image_urls = [
+      'https://image.shutterstock.com/image-photo/attractive-aged-businesswoman-teacher-mentor-260nw-1043108527.jpg', 
+      'https://image.shutterstock.com/image-photo/shot-attractive-mature-businesswoman-working-260nw-1894819138.jpg', 
+      'https://image.shutterstock.com/image-photo/image-happy-young-business-woman-260nw-1215373642.jpg', 
+      'https://image.shutterstock.com/image-photo/shot-happy-middle-aged-woman-260nw-1923362096.jpg', 
+      'https://image.shutterstock.com/image-photo/portrait-young-smiling-woman-looking-260nw-1865153395.jpg', 
+      'https://image.shutterstock.com/image-photo/confident-stylish-european-mature-middle-260nw-1818513056.jpg'
+    ]
+  finally:
+    return image_urls
+    
+
 
   
