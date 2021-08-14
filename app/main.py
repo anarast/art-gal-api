@@ -6,8 +6,7 @@ import url_scraper
 app = FastAPI()
 
 origins = [
-  "https://artgal.saratan.me/",
-  "https://dxjjvuzs3c4vt.cloudfront.net"
+  "https://artgal.saratan.me"
 ]
 
 app.add_middleware(
