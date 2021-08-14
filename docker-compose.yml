@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8000:8081"
     environment:
       PORT: 8000
     network_mode: host
