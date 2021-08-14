@@ -5,7 +5,10 @@ import url_scraper
 
 app = FastAPI()
 
-origins = ["https://artgal.saratan.me/"]
+origins = [
+  "https://artgal.saratan.me/",
+  "https://dxjjvuzs3c4vt.cloudfront.net"
+]
 
 app.add_middleware(
     CORSMiddleware,
