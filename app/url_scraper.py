@@ -26,7 +26,7 @@ def scrape():
     
     if r.status_code == 200:
       soup = bs(r.content, 'html.parser')
-      img_elements = soup.find('div', {'data-automation': 'mosaic-grid'}).find_all('img')
+      img_elements = soup.find('div', {'data-automation': 'AssetGrids_MosaicAssetGrid_div'}).find_all('img')
 
 
       start_index = random.randint(0, 10)
