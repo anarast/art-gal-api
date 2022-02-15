@@ -8,7 +8,6 @@ authors = ["Sara Tan <saratan@mac.com>"]
 python = "^3.8"
 fastapi = "^0.68.0"
 uvicorn = {extras = ["standard"], version = "^0.14.0"}
-bs4 = "^0.0.1"
 
 [tool.poetry.dev-dependencies]
 

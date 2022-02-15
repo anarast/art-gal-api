@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-import url_scraper
+import image_data_fetcher
 
 app = FastAPI()
 
 origins = [
-  "https://artgal.saratan.me"
+  "https://artgal.saratan.me",
 ]
 
 app.add_middleware(
@@ -19,5 +19,5 @@ app.add_middleware(
 
 @app.get("/photos")
 def get_photos():
-  urls = url_scraper.scrape()
-  return {"urls": urls}
+  image_data = image_data_fetcher.fetch()
+  return {"image_data": image_data}
